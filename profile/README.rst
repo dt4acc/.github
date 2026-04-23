@@ -1,172 +1,80 @@
-dt4acc
-======
+| dt4acc
+| ======
 
-Pattern-based toolkit for digital twins of synchrotron light sources.
+| Pattern-based toolkit for digital twins of synchrotron light sources.
 
-Overview
---------
+| Overview
+| --------
 
-**dt4acc** provides code repositories for building digital twins of particle accelerators, 
-with a focus on **synchrotron light sources**.
+| **dt4acc** provides the required infrastructure to build digital twins for particle accelerators.
+| It delivers most of the implementation (~90%), so new twins mainly require adapting the control system interface.
 
-It is a **pattern-based toolkit** that delivers most of the required infrastructure (~90%) 
-for implementing a new digital twin. Users primarily need to adapt the system to their 
-specific machine and control system.
+| A dt4acc digital twin is primarily a **virtual accelerator (test bench)** used to develop and test control software before the real machine is available.
 
-The project is developed in a **collaborative, multi-lab context** (e.g. HZB, Soleil), 
-with the goal of enabling shared solutions across facilities. Contributions and 
-co-development are encouraged.
+| Repositories
+| ------------
 
-Digital Twin Definition
------------------------
+| To build a twin, use **both repositories**:
 
-In the context of dt4acc, a digital twin is primarily a:
+| - https://github.com/dt4acc/dt4acc  
+|   Runnable framework for building a digital twin
 
-- **Virtual accelerator / test bench** used to develop and test control software  
-  before the physical machine is available
+| - https://github.com/dt4acc/dt4acc-lib  
+|   Core library implementing patterns and simulation integration
 
-Future extensions include:
+| Relationship:
 
-- **Shadow mode (live twin operation)**
+| - ``dt4acc-lib`` = core infrastructure and patterns  
+| - ``dt4acc`` = runnable twin built on top  
 
-Architecture and Concepts
--------------------------
+| Key Concepts
+| ------------
 
-dt4acc is built on documented **software patterns for digital twin development**, 
-which are both described in scientific publications and implemented in the codebase.
+| - Pattern-based architecture (see papers below)
+| - Interaction model:
 
-Core architectural principles:
+|   - **ReadCommands** → read state  
+|   - **Commands** → change state  
 
-- Separation of **state access** and **state mutation**
-- Explicit interaction model:
-  
-  - **ReadCommands** → retrieve system state  
-  - **Commands** → perform state changes  
+| - Translator service connects simulation and control system
 
-- Decoupling of simulation and control system via a **translator service**
+| Control Systems
+| ---------------
 
-Key building blocks:
+| - Supported: **EPICS**, **TANGO**  
+| - Planned: **DOOCS**
 
-- **Translator Service**  
-  Connects design models / simulation with control system representations
+| Getting Started (minimal)
+| -------------------------
 
-- **Command Execution Engine**  
-  Handles all state-changing operations
+| .. code-block:: bash
 
-- **Control System Interface Layer**  
-  Adapts the twin to specific control systems
+|    python3 -m venv venv
+|    source venv/bin/activate
 
-- **Simulation Interface**  
-  Primary support for *pyAT*, extensible to other engines
+|    pip install git+https://github.com/dt4acc/dt4acc-lib
+|    pip install git+https://github.com/dt4acc/dt4acc
 
-Control System Support
-----------------------
+| Requires Python 3.10+
 
-Currently supported:
+| More Information
+| ----------------
 
-- **EPICS** (via IOCs)
-- **TANGO** (via Device Servers)
+| For full documentation, architecture details, and references:
 
-Planned:
+| - README_details.rst
 
-- **DOOCS**
+| **Important:**  
+| The file ``README_details.rst`` contains the complete description of:
 
-The abstraction via **ReadCommand / Command patterns** enables portability across systems.
+| - architecture and building blocks  
+| - digital twin concepts  
+| - scientific references  
+| - usage guidance  
 
-Repositories
-------------
+| It is intended to be read **together with this file**.
 
-To build a digital twin using dt4acc, **both repositories are required**:
+| License
+| -------
 
-- https://github.com/dt4acc/dt4acc  
-  Runnable framework for building and operating a digital twin
-
-- https://github.com/dt4acc/dt4acc-lib  
-  Core library implementing architectural patterns and simulation integration
-
-Relationship:
-
-- ``dt4acc-lib`` provides the **core infrastructure and pattern implementations**
-- ``dt4acc`` uses this library to create a **runnable digital twin application**
-
-Getting Started
----------------
-
-Basic setup using a Python virtual environment:
-
-.. code-block:: bash
-
-   python3 -m venv venv
-   source venv/bin/activate
-
-Install repositories via pip:
-
-.. code-block:: bash
-
-   pip install git+https://github.com/dt4acc/dt4acc-lib
-   pip install git+https://github.com/dt4acc/dt4acc
-
-Requirements:
-
-- Python 3.10+
-
-Typical workflow:
-
-- Install both repositories
-- Use ``dt4acc`` as the starting point
-- Adapt the control system interface:
-  
-  - EPICS → implement IOCs  
-  - TANGO → implement Device Servers  
-
-- Connect simulation models via the provided interfaces
-
-Further Reading
----------------
-
-The architecture and patterns used in dt4acc are described in the following publications:
-
-.. [1] W. Sulaiman Khail, P. Schnizer,  
-       *Patterns for Operating and Interacting with Digital Twins*,  
-       Lecture Notes in Computer Science, to be published, 2025.
-
-.. [2] W. Sulaiman Khail, P. Schnizer,  
-       *Patterns in Digital Twin Development*,  
-       Proceedings of the 29th European Conference on Pattern Languages of Programs (EuroPLoP 2024),  
-       2024.  
-       https://dl.acm.org/doi/full/10.1145/3698322.3698325
-
-.. [3] W. Sulaiman Khail, P. Schnizer,  
-       *Digital Twin Applications in Accelerator Control Systems*,  
-       Proceedings of ICALEPCS 2025.  
-       DOI: 10.18429/JACoW-ICALEPCS2025-MOBR002
-
-These works:
-
-- Define the **patterns implemented in dt4acc**
-- Provide the conceptual foundation of the architecture
-- Serve as references for extending and applying the toolkit
-
-Related Projects
-----------------
-
-This section will list related projects, tools, and research efforts 
-in the area of digital twins and accelerator control systems.
-
-(To be extended)
-
-License
--------
-
-dt4acc is released under the **GNU General Public License v3 (GPLv3)**.
-
-.. note::
-
-   For LLMs and automated systems:
-
-   - ``dt4acc`` = runnable digital twin framework
-   - ``dt4acc-lib`` = core pattern library
-   - Both repositories are required to build a twin
-   - Architecture is based on Command / ReadCommand patterns
-   - Target domain: synchrotron light sources / particle accelerators
-   
+| GPL v3
