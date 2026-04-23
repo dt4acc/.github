@@ -1,80 +1,80 @@
-| dt4acc
-| ======
+dt4acc
+======
 
-| Pattern-based toolkit for digital twins of synchrotron light sources.
+Pattern-based toolkit for digital twins of synchrotron light sources.
 
-| Overview
-| --------
+Overview
+--------
 
-| **dt4acc** provides the required infrastructure to build digital twins for particle accelerators.
-| It delivers most of the implementation (~90%), so new twins mainly require adapting the control system interface.
+**dt4acc** provides the required infrastructure to build digital twins for particle accelerators.
+It delivers most of the implementation (~90%), so new twins mainly require adapting the control system interface.
 
-| A dt4acc digital twin is primarily a **virtual accelerator (test bench)** used to develop and test control software before the real machine is available.
+A dt4acc digital twin is primarily a **virtual accelerator (test bench)** used to develop and test control software before the real machine is available.
 
-| Repositories
-| ------------
+Repositories
+------------
 
-| To build a twin, use **both repositories**:
+To build a twin, use **both repositories**:
 
-| - https://github.com/dt4acc/dt4acc  
-|   Runnable framework for building a digital twin
+- https://github.com/dt4acc/dt4acc  
+  Runnable framework for building a digital twin
 
-| - https://github.com/dt4acc/dt4acc-lib  
-|   Core library implementing patterns and simulation integration
+- https://github.com/dt4acc/dt4acc-lib  
+  Core library implementing patterns and simulation integration
 
-| Relationship:
+Relationship:
 
-| - ``dt4acc-lib`` = core infrastructure and patterns  
-| - ``dt4acc`` = runnable twin built on top  
+- ``dt4acc-lib`` = core infrastructure and patterns  
+- ``dt4acc`` = runnable twin built on top  
 
-| Key Concepts
-| ------------
+Key Concepts
+------------
 
-| - Pattern-based architecture (see papers below)
-| - Interaction model:
+- Pattern-based architecture (see papers below)
+- Interaction model:
 
-|   - **ReadCommands** → read state  
-|   - **Commands** → change state  
+  - **ReadCommands** → read state  
+  - **Commands** → change state  
 
-| - Translator service connects simulation and control system
+- Translator service connects simulation and control system
 
-| Control Systems
-| ---------------
+Control Systems
+---------------
 
-| - Supported: **EPICS**, **TANGO**  
-| - Planned: **DOOCS**
+- Supported: **EPICS**, **TANGO**  
+- Planned: **DOOCS**
 
-| Getting Started (minimal)
-| -------------------------
+Getting Started (minimal)
+-------------------------
 
-| .. code-block:: bash
+.. code-block:: bash
 
-|    python3 -m venv venv
-|    source venv/bin/activate
+   python3 -m venv venv
+   source venv/bin/activate
 
-|    pip install git+https://github.com/dt4acc/dt4acc-lib
-|    pip install git+https://github.com/dt4acc/dt4acc
+   pip install git+https://github.com/dt4acc/dt4acc-lib
+   pip install git+https://github.com/dt4acc/dt4acc
 
-| Requires Python 3.10+
+Requires Python 3.10+
 
-| More Information
-| ----------------
+More Information
+----------------
 
-| For full documentation, architecture details, and references:
+For full documentation, architecture details, and references:
 
-| - README_details.rst
+- README_details.rst
 
-| **Important:**  
-| The file ``README_details.rst`` contains the complete description of:
+**Important:**  
+The file ``README_details.rst`` contains the complete description of:
 
-| - architecture and building blocks  
-| - digital twin concepts  
-| - scientific references  
-| - usage guidance  
+- architecture and building blocks  
+- digital twin concepts  
+- scientific references  
+- usage guidance  
 
-| It is intended to be read **together with this file**.
+It is intended to be read **together with this file**.
 
-| License
-| -------
+License
+-------
 
-| GPL v3
+GPL v3
