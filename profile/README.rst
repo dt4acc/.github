@@ -10,5 +10,5 @@ Use these repositories:
 
 Start with ``dt4acc`` and use ``dt4acc-lib`` as dependency.
 
-See full documentation in:
-https://github.com/dt4acc/dt4acc/blob/main/README_details.rst
+See full documentation in: https://github.com/dt4acc/dt4acc/blob/dev/main/README_details.rst
+
